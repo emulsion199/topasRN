@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "topas_native",
+    "slug": "topas_native",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "topas_native"
+}
