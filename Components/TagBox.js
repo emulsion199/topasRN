@@ -14,6 +14,7 @@ const TagBox=(params)=>
 const styles=StyleSheet.create(
     {
         container:{
+            paddingTop:30,
             flex:1,
             flexDirection:'row',
             flexWrap:'wrap',
@@ -24,10 +25,10 @@ const styles=StyleSheet.create(
             padding:10,
             height:39,
             backgroundColor:Color.normalColor,
-            borderRadius:100,
+            borderRadius:10,
             alignItems:'center',
             justifyContent:'center',
-            margin:5,
+            margin:7,
         }
     }
 )

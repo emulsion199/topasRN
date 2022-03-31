@@ -2,7 +2,7 @@ import {Text,View,StyleSheet,TextInput,TouchableOpacity, ScrollView,Button} from
 import {useState,useEffect} from 'react'
 import Color from '../Data/Color'
 import TagBox from './TagBox';
-const SelectPrice=({navigation})=>
+const SelectIdea=({navigation})=>
 {
     ////
     const onChange = (event, selectedDate) => {
@@ -11,40 +11,34 @@ const SelectPrice=({navigation})=>
         setDate(currentDate);
         console.log(currentDate)
       };
-    //Make StockName List//
+    //Make Reason List//
    
     //State Value//
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
+
+    const [Reason,setReason]=useState("")
+    const [typing,setTyping]=useState(0)
     //State Cycle//
-    
+    useEffect(()=>
+    {
+        if(Reason==""){setTyping(0)}
+        else{setTyping(1)}
+    }
+    ,[Reason])
     return (
         <View style={styles.container}>
             <View style={styles.up}>
-                <Text style={styles.SelectDateQuestion}>얼마에 구매하셨나요?</Text>
-                <Text style={styles.SelectDateText}>구매가격</Text>
-                <View style={styles.SelectDateBox}>
-                    <View style={styles.BindPrice}>
-                        <TextInput style={styles.Price}  keyboardType = 'numeric'></TextInput>
-                        <Text style={styles.Unit}>원</Text>
-                    </View>
-                    <View style={styles.BindAmount}>
-                        <TextInput style={styles.Amount}  keyboardType = 'numeric'></TextInput>
-                        <Text style={styles.Unit}>주</Text>
-                    </View>
-                </View>
-                <View style={styles.SelectDateBox}>
-                    <View style={styles.lineBlackX2}></View>
-                    <View style={styles.lineBlack}></View>
-                </View>
-
-                <Text style={styles.SelectDateQuestion}>어떤 돈으로 구매하셨나요?</Text>
-                <TagBox tagData={[{title:'월급'},{title:'용돈'},{title:'보너스테스트테스트테스틑'},{title:'대출'}]}></TagBox>
-
+                <Text style={styles.SelectDateQuestion}>구매하신 이유를 알려주세요</Text>
             </View>
+            <View style={styles.ReasonInputBox}>
+                <TextInput style={styles.StockTextInput} placeholder="구체적인 투자 포인트가 있나요?" value={Reason} onChangeText={(Text)=>setReason(Text)}></TextInput>
+                {typing?<TouchableOpacity onPress={()=>{setReason("")}} style={styles.ReasonInitButton}><Text style={styles.ReasonInitButtonX}>×</Text></TouchableOpacity>:null}
+            </View>
+            <View style={typing ? styles.lineBlack:styles.lineGray}></View>
             <View style={styles.down}>
-                <TouchableOpacity onPress={()=>{navigation.navigate('SelectIdea')}}style={styles.NextButton}><Text>다음</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>{navigation.navigate('SelectFeeling')}} style={styles.NextButton}><Text>다음</Text></TouchableOpacity>
             </View>
             
         </View>
@@ -61,18 +55,15 @@ const styles=StyleSheet.create(
       },
       SelectDateQuestion:
       {
-          marginTop:114,
+          marginTop:70,
+          marginLeft:10,
           fontSize:24,
           fontWeight:'bold',
       },
-      SelectDateText:
+      ReasonInputBox:
       {
-          marginTop:30,
-          fontSize:12,
-          color:'rgba(196,196,196,1)',
-          marginBottom:20,
+          flexDirection:'row',
       },
-      
       SelectDateBox:
       {
 
@@ -94,6 +85,14 @@ const styles=StyleSheet.create(
           fontWeight:'bold',
 
       },
+      StockTextInput:
+      {
+          width:100,
+          marginLeft:10,
+          flex:1,
+          height:40,
+          fontSize:20,
+      },
       up:
       {
           flex:2,
@@ -104,22 +103,18 @@ const styles=StyleSheet.create(
           alignItems:'flex-end',
           justifyContent:'flex-end',
       },
-     
       lineBlack:
       {
-          flex:1,
+          width:'100%',
           height:2,
           backgroundColor:'black',
-          margin:5,
       },
-      lineBlackX2:
+      lineGray:
       {
-          flex:2,
+          width:'100%',
           height:2,
-          backgroundColor:'black',
-          margin:5,
+          backgroundColor:'lightgray',
       },
-      
       NextButton:
       {
         width:'100%',
@@ -147,4 +142,4 @@ const styles=StyleSheet.create(
       }
     }
 )
-export default SelectPrice
+export default SelectIdea

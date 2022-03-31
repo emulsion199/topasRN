@@ -2,7 +2,7 @@ import {Text,View,StyleSheet,TextInput,TouchableOpacity, ScrollView,Button} from
 import {useState,useEffect} from 'react'
 import Color from '../Data/Color'
 import TagBox from './TagBox';
-const SelectPrice=({navigation})=>
+const SelectIdea=({navigation})=>
 {
     ////
     const onChange = (event, selectedDate) => {
@@ -22,29 +22,12 @@ const SelectPrice=({navigation})=>
     return (
         <View style={styles.container}>
             <View style={styles.up}>
-                <Text style={styles.SelectDateQuestion}>얼마에 구매하셨나요?</Text>
-                <Text style={styles.SelectDateText}>구매가격</Text>
-                <View style={styles.SelectDateBox}>
-                    <View style={styles.BindPrice}>
-                        <TextInput style={styles.Price}  keyboardType = 'numeric'></TextInput>
-                        <Text style={styles.Unit}>원</Text>
-                    </View>
-                    <View style={styles.BindAmount}>
-                        <TextInput style={styles.Amount}  keyboardType = 'numeric'></TextInput>
-                        <Text style={styles.Unit}>주</Text>
-                    </View>
-                </View>
-                <View style={styles.SelectDateBox}>
-                    <View style={styles.lineBlackX2}></View>
-                    <View style={styles.lineBlack}></View>
-                </View>
-
-                <Text style={styles.SelectDateQuestion}>어떤 돈으로 구매하셨나요?</Text>
-                <TagBox tagData={[{title:'월급'},{title:'용돈'},{title:'보너스테스트테스트테스틑'},{title:'대출'}]}></TagBox>
+                <Text style={styles.SelectDateQuestion}>어디서 아이디어를 얻었나요?</Text>
+                <TagBox tagData={[{title:'지인의 추천으로'},{title:'전문가의 추천으로'},{title:'뉴스를 보고'},{title:'분석 리포트를 읽고'},{title:'다른 투자자의 분석 글을 보고'},{title:'시장에서 핫한 종목을 보고'},{title:'혼자 보다가'},{title:'관심 종목을 보다가'},{title:'일상에서'},{title:'퀸트스크리닝을 하다가'},{title:'기타'}]}></TagBox>
 
             </View>
             <View style={styles.down}>
-                <TouchableOpacity onPress={()=>{navigation.navigate('SelectIdea')}}style={styles.NextButton}><Text>다음</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>{navigation.navigate('TypeReason')}} style={styles.NextButton}><Text>다음</Text></TouchableOpacity>
             </View>
             
         </View>
@@ -61,7 +44,8 @@ const styles=StyleSheet.create(
       },
       SelectDateQuestion:
       {
-          marginTop:114,
+          marginTop:70,
+          marginLeft:10,
           fontSize:24,
           fontWeight:'bold',
       },
@@ -147,4 +131,4 @@ const styles=StyleSheet.create(
       }
     }
 )
-export default SelectPrice
+export default SelectIdea
