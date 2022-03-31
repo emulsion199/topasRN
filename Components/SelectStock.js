@@ -1,6 +1,18 @@
 import {Text,View,StyleSheet,TextInput,TouchableOpacity, ScrollView} from 'react-native'
 import {useState,useEffect} from 'react'
-import Color from '../Data/Color'
+import Color from '../Data/Color';
+import { store } from '..';
+import { connect } from 'react-redux';
+// define reducer //
+const mapStateToProps=(state)=>(
+   state
+)
+const mapDispatchToProps=(dispatch)=>(
+    {
+        "changeCurStock":()=>dispatch("changeCurStock"),
+    }
+)
+
 const SelectStock=({navigation})=>
 {
     //Make StockName List//
@@ -24,6 +36,7 @@ const SelectStock=({navigation})=>
         else{setTyping(1)}
     }
     ,[stockName])
+    console.warn(store.getState()["curStock"])
     return (
         <View style={styles.container}>
             <Text style={styles.SelectStockQuestion}>어떤 종목을 구매하셨나요?</Text>
@@ -131,4 +144,4 @@ const styles=StyleSheet.create(
       }
     }
 )
-export default SelectStock
+export default connect(mapStateToProps,mapDispatchToProps)(SelectStock)

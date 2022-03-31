@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; 
@@ -13,11 +12,14 @@ import SelectFeeling from './Components/SelectFeeling';
 import RecordEval from './Components/RecordEval';
 import RecordEnd from './Components/RecordEnd';
 
+import { Provider } from 'react-redux';
+import { store } from '.';
 const Stack = createStackNavigator();
 const App=()=>
 {
   return(
-    <NavigationContainer>  
+    <Provider store={store}>
+    <NavigationContainer> 
         	{/* 네비게이션 기본틀의 스택을 생성 */} 
             <Stack.Navigator initialRouteName="Home"> 
             	{/* 해당스택에 들어갈 화면 요소를 넣어준다. */}
@@ -32,6 +34,7 @@ const App=()=>
                 <Stack.Screen name="RecordEnd" component={RecordEnd} options={{title:'매수기록'}}/> 
             </Stack.Navigator> 
         </NavigationContainer> 
+        </Provider>
   )
 }
 
