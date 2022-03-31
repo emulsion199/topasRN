@@ -36,7 +36,7 @@ const SelectStock=({navigation})=>
         else{setTyping(1)}
     }
     ,[stockName])
-    console.warn(store.getState()["curStock"])
+    
     return (
         <View style={styles.container}>
             <Text style={styles.SelectStockQuestion}>어떤 종목을 구매하셨나요?</Text>
@@ -50,7 +50,10 @@ const SelectStock=({navigation})=>
                 {stockName==""? null: financeList.map((data,idx)=>{if(data.indexOf(stockName)!=-1){return(
                 <TouchableOpacity key={idx} style={styles.StockAutoBox} onPress={()=>{setStockName(data)}}><Text style={styles.StockAutoText}>{data}</Text></TouchableOpacity>)}})}
             </ScrollView>
-            <TouchableOpacity onPress={()=>{navigation.navigate('SelectDate')}} style={styles.NextButton}><Text>다음</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate('SelectDate')
+            store.dispatch({type:"changeCurStock",stock:stockName})
+            console.warn(store.getState()["curStock"])
+        }} style={styles.NextButton}><Text>다음</Text></TouchableOpacity>
         </View>
     )
 

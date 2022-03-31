@@ -18,7 +18,10 @@ export default AddRecord=(state=initialState,action)=>
     switch(action.type)
     {
         case "changeCurStock":
-            return {...state,curStock: {...curStock, stock:action.stock}}
+            {
+                state.curStock.stock=action.stock
+                return state
+            }
         default:
             return state
     }
